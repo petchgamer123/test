@@ -9,3 +9,6 @@ passlib
 bcrypt
 python-multipart
 Jinja2
+google-auth 
+google-auth-oauthlib
+itsdangerous
