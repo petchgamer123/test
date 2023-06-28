@@ -13,5 +13,4 @@ google-auth
 google-auth-oauthlib
 itsdangerous
 httpx
-fastapi-session
 fastapi-session-mongodb
