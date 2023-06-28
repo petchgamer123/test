@@ -50,7 +50,7 @@ def login_facebook():
     facebook_redirect_url = "https://www.facebook.com/v12.0/dialog/oauth"
     params = {
         "client_id": "1300273574255667",
-        "redirect_uri": "http://localhost:4200/callback",
+        "redirect_uri": "https://tt-9m90.onrender.com/callback",
         "state": "YOUR_STATE",
         "scope": "email",  # กำหนด scope ตามความต้องการ
     }
@@ -64,7 +64,7 @@ async def facebook_callback(request: Request, code: str, state: str):
     params = {
         "client_id": "1300273574255667",
         "client_secret": "e7c85850d410d960ae41c6554a4c8cdd",
-        "redirect_uri": "http://localhost:4200/callback",
+        "redirect_uri": "https://tt-9m90.onrender.com/callback",
         "code": code,
     }
     async with httpx.AsyncClient() as client:
