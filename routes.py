@@ -2,17 +2,15 @@ from fastapi import APIRouter, FastAPI, Depends, HTTPException, status, Request
 from fastapi.responses import RedirectResponse
 from google_auth_oauthlib.flow import Flow
 from starlette.middleware.sessions import SessionMiddleware
-from starlette.middleware import Middleware
+from starlette.middleware import MiddlewareStack
 from starlette.requests import Request as StarletteRequest
 from google.oauth2 import id_token
 from google.auth.transport import requests
-import os
-from pathlib import Path
+from functools import wraps
 
 app = FastAPI()
 Router = APIRouter()
-app.add_middleware(SessionMiddleware,
-                   secret_key="dVu9jfC1PPVGRkq-X5nKaP_vDHC63CxQ2K4W0QVpFJo", session_cookie="user_session")
+app.add_middleware(MiddlewareStack, SessionMiddleware, secret_key="dVu9jfC1PPVGRkq-X5nKaP_vDHC63CxQ2K4W0QVpFJo", session_cookie="user_session")
 
 client_secrets_file = "client_secret.json"
 
@@ -42,6 +40,7 @@ async def login(request: StarletteRequest):
 
 
 @app.get("/callback")
+@login_is_required
 async def callback(request: StarletteRequest):
     flow.fetch_token(authorization_response=str(request.url))
 
@@ -66,16 +65,18 @@ async def callback(request: StarletteRequest):
 
 
 @app.get("/logout")
+@login_is_required
 async def logout(request: StarletteRequest):
     request.session.clear()
     return RedirectResponse("/")
 
 
 @app.get("/protected_area")
+@login_is_required
 async def protected_area(request: StarletteRequest):
     return f"Hello {request.session['name']}! <br/> <a href='/logout'><button>Logout</button></a>"
 
 
 @app.get("/")
 async def index():
-    return "Hello World <a href='/login'><button>Login</button></a>"
+    return "Hello World <a href='/google/login'><button>Login</button></a>"
