@@ -20,7 +20,7 @@ GOOGLE_CLIENT_ID = "642643535438-mm2947mq2360qr4429tmcjec7lje530j.apps.googleuse
 flow = Flow.from_client_secrets_file(
     client_secrets_file=client_secrets_file,
     scopes=["openid", "email", "profile"],
-    redirect_uri="http://localhost:4200/callback"
+    redirect_uri="https://tt-9m90.onrender.com/callback"
 )
 
 
