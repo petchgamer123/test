@@ -14,6 +14,9 @@ app = FastAPI()
 #     displayName: str
 #     provider: str
 
+from fastapi.middleware.sessions import SessionMiddleware
+app.add_middleware(SessionMiddleware, secret_key="dVu9jfC1PPVGRkq-X5nKaP_vDHC63CxQ2K4W0QVpFJo")
+
 def create_access_token(data: dict, expires_delta: timedelta = None):
     to_encode = data.copy()
     if expires_delta:
