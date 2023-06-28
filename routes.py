@@ -34,14 +34,14 @@ def login_is_required(func):
     return wrapper
 
 
-@app.get("/login")
+@app.get("/google/login")
 async def login(request: StarletteRequest):
     authorization_url, state = flow.authorization_url()
     request.session["state"] = state
     return RedirectResponse(authorization_url)
 
 
-@app.get("/callback")
+@app.get("/google/callback")
 async def callback(request: StarletteRequest):
     flow.fetch_token(authorization_response=str(request.url))
 
