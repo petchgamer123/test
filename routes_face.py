@@ -44,7 +44,7 @@ def login_required(func):
 async def root():
     return {"message": "Hello, World!"}
 
-@app.get("/login")
+@app.get("/facebook/login")
 def login_facebook():
     # Redirect to Facebook login
     facebook_redirect_url = "https://www.facebook.com/v12.0/dialog/oauth"
