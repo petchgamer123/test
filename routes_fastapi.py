@@ -61,8 +61,10 @@ async def callback(request: StarletteRequest):
 
     request.session["google_id"] = id_info.get("sub")
     request.session["name"] = id_info.get("name")
-    user = collection_account.insert_one(id_info)
-    print(user)
+
+    if(collection_account.find_one({"sub": id_info.get("sub")}) is None):
+        user = collection_account.insert_one(id_info)
+
     return RedirectResponse("/")
 
 
