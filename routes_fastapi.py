@@ -46,12 +46,8 @@ async def callback(request: StarletteRequest):
     if not request.session["state"] == request.query_params["state"]:
         raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, detail="State does not match!")
 
-    # credentials = flow.credentials
-    # request_session = requests.Session()
-    # cached_session = requests.session.CachedSession(request_session)
-    # token_request = requests.Request(session=cached_session)
-
     credentials = flow.credentials
+    request_session = google.auth.transport.requests.RequestSession()
     token_request = google.auth.transport.requests.Request(session=request_session)
 
     id_info = id_token.verify_oauth2_token(
