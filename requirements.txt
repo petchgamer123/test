@@ -56,7 +56,7 @@ notebook==6.5.2
 notebook_shim==0.2.2
 numpy
 packaging==21.3
-pandas==1.4.2
+pandas
 pandocfilters==1.5.0
 parso==0.8.3
 pickleshare==0.7.5
