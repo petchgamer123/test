@@ -7,6 +7,7 @@ from starlette.middleware import Middleware
 from starlette.requests import Request as StarletteRequest
 from google.oauth2 import id_token
 from google.auth.transport import requests
+import requests
 import os
 from pathlib import Path
 
@@ -47,7 +48,7 @@ async def callback(request: StarletteRequest):
         raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, detail="State does not match!")
 
     credentials = flow.credentials
-    request_session = google.auth.transport.requests.RequestSession()
+    request_session = requests.Session()
     token_request = google.auth.transport.requests.Request(session=request_session)
 
     id_info = id_token.verify_oauth2_token(
