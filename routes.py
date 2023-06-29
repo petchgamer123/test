@@ -57,20 +57,21 @@ async def callback(request: StarletteRequest):
 
     request.session["google_id"] = id_info.get("sub")
     request.session["name"] = id_info.get("name")
-    return RedirectResponse("/protected_area")
-
-
-@app.get("/logout")
-async def logout(request: StarletteRequest):
-    request.session.clear()
+    console.log(id_info)
     return RedirectResponse("/")
 
-@app.get("/protected_area")
-async def protected_area(request: StarletteRequest):
-    return f"Hello {request.session['name']}! <br/> <a href='/logout'><button>Logout</button></a>"
+
+# @app.get("/logout")
+# async def logout(request: StarletteRequest):
+#     request.session.clear()
+#     return RedirectResponse("/")
+
+# @app.get("/protected_area")
+# async def protected_area(request: StarletteRequest):
+#     return f"Hello {request.session['name']}! <br/> <a href='/logout'><button>Logout</button></a>"
 
 
-@app.get("/")
-async def index():
-    return "Hello World <a href='/login'><button>Login</button></a>"
+# @app.get("/")
+# async def index():
+#     return "Hello World <a href='/login'><button>Login</button></a>"
 
