@@ -46,7 +46,7 @@ async def callback(request: StarletteRequest):
         raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, detail="State does not match!")
 
     credentials = flow.credentials
-    request_session = requests.RequestsSession()
+    request_session = requests.Session()
     cached_session = requests.session.CachedSession(request_session)
     token_request = requests.Request(session=cached_session)
 
