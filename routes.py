@@ -14,7 +14,7 @@ app = FastAPI()
 Router = APIRouter()
 app.add_middleware(SessionMiddleware, secret_key="dVu9jfC1PPVGRkq-X5nKaP_vDHC63CxQ2K4W0QVpFJo", session_cookie="user_session")
 
-client_secrets_file = "..\client_secret.json"
+client_secrets_file = "..client_secret.json"
 
 GOOGLE_CLIENT_ID = "642643535438-mm2947mq2360qr4429tmcjec7lje530j.apps.googleusercontent.com"
 flow = Flow.from_client_secrets_file(
