@@ -11,9 +11,11 @@ import requests
 import os
 from pathlib import Path
 
-app = FastAPI()
+from config.db import collection_account
 
+app = FastAPI()
 Router = APIRouter()
+
 app.add_middleware(SessionMiddleware, secret_key="dVu9jfC1PPVGRkq-X5nKaP_vDHC63CxQ2K4W0QVpFJo", session_cookie="user_session")
 
 client_secrets_file = "client_secret.json"
@@ -59,6 +61,8 @@ async def callback(request: StarletteRequest):
 
     request.session["google_id"] = id_info.get("sub")
     request.session["name"] = id_info.get("name")
+    user = collection_account.insert_one(id_info)
+    print(user)
     return RedirectResponse("/")
 
 
