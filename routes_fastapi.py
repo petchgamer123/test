@@ -1,6 +1,7 @@
 from fastapi import APIRouter, FastAPI, Depends, HTTPException, status, Request
 from fastapi.responses import RedirectResponse
 from google_auth_oauthlib.flow import Flow
+import google.auth.transport.requests
 from starlette.middleware.sessions import SessionMiddleware
 from starlette.middleware import Middleware
 from starlette.requests import Request as StarletteRequest
@@ -45,10 +46,13 @@ async def callback(request: StarletteRequest):
     if not request.session["state"] == request.query_params["state"]:
         raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, detail="State does not match!")
 
+    # credentials = flow.credentials
+    # request_session = requests.Session()
+    # cached_session = requests.session.CachedSession(request_session)
+    # token_request = requests.Request(session=cached_session)
+
     credentials = flow.credentials
-    request_session = requests.Session()
-    cached_session = requests.session.CachedSession(request_session)
-    token_request = requests.Request(session=cached_session)
+    token_request = google.auth.transport.requests.Request(session=request_session)
 
     id_info = id_token.verify_oauth2_token(
         id_token=credentials.id_token,
