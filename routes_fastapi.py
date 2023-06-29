@@ -19,7 +19,8 @@ client_secrets_file = "client_secret.json"
 GOOGLE_CLIENT_ID = "642643535438-mm2947mq2360qr4429tmcjec7lje530j.apps.googleusercontent.com"
 flow = Flow.from_client_secrets_file(
     client_secrets_file=client_secrets_file,
-    scopes=["openid", "email", "profile"],
+    scopes=["https://www.googleapis.com/auth/userinfo.profile",
+            "https://www.googleapis.com/auth/userinfo.email", "openid"],
     redirect_uri="https://fastapi-ytfv.onrender.com/google/callback"
 )
 
