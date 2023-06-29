@@ -31,7 +31,7 @@ h11==0.14.0
 httptools==0.5.0
 idna==3.4
 ipykernel==6.13.0
-ipython==8.3.0
+ipython
 ipython-genutils==0.2.0
 itsdangerous==2.1.2
 jedi==0.18.1
