@@ -29,5 +29,4 @@ PyPDF2
 python-jose
 passlib
 bcrypt
-itsdangerous
 python-dotenv
