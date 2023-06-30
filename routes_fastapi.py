@@ -65,7 +65,7 @@ async def callback(request: StarletteRequest):
     if(collection_account.find_one({"sub": id_info.get("sub")}) is None):
         user = collection_account.insert_one(id_info)
 
-    return RedirectResponse("http://127.0.0.1:8000")
+    return RedirectResponse("http://localhost:4200/")
 
 
 # @app.get("/logout")
