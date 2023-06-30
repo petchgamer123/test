@@ -65,7 +65,7 @@ async def callback(request: StarletteRequest):
     if(collection_account.find_one({"sub": id_info.get("sub")}) is None):
         user = collection_account.insert_one(id_info)
 
-    return RedirectResponse("localhost:4200/login/callback")
+    return RedirectResponse("/")
 
 
 # @app.get("/logout")
@@ -78,7 +78,7 @@ async def callback(request: StarletteRequest):
 #     return f"Hello {request.session['name']}! <br/> <a href='/logout'><button>Logout</button></a>"
 
 
-@app.get("/")
-async def index():
-    return "Hello World <a href='/login'><button>Login</button></a>"
+# @app.get("/")
+# async def index():
+#     return "Hello World <a href='/login'><button>Login</button></a>"
 
