@@ -20,7 +20,7 @@ six==1.15.0
 urllib3==1.26.3
 Werkzeug==1.0.1
 
-pydantic
+pydantic-2.0
 pymongo
 uvicorn
 fastapi
