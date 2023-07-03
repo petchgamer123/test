@@ -25,7 +25,6 @@ pymongo
 uvicorn
 fastapi
 firebase_admin
-pydantic
 python-multipart
 PyPDF2
 python-jose
