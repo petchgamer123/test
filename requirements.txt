@@ -20,14 +20,19 @@ six==1.15.0
 urllib3==1.26.3
 Werkzeug==1.0.1
 
-pydantic==2.0
-pymongo
 uvicorn
 fastapi
 firebase_admin
+pydantic
+pymongo
 python-multipart
 PyPDF2
 python-jose
 passlib
 bcrypt
+google-auth 
+google-auth-oauthlib
+itsdangerous
 python-dotenv
+wraps
+pyjwt==1.7.1
