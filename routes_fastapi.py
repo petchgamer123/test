@@ -10,6 +10,8 @@ from google.auth.transport import requests
 import requests
 import os
 from pathlib import Path
+import json
+from starlette.responses import JSONResponse
 
 from db import collection_account
 
@@ -62,10 +64,16 @@ async def callback(request: StarletteRequest):
     request.session["google_id"] = id_info.get("sub")
     request.session["name"] = id_info.get("name")
 
+    response_data = {
+        "google_id": id_info.get("sub"),
+        "name": id_info.get("name"),
+        "email": id_info.get("email")
+    }
+    
     if(collection_account.find_one({"sub": id_info.get("sub")}) is None):
         user = collection_account.insert_one(id_info)
 
-    return RedirectResponse("http://localhost:4200/")
+    return RedirectResponse("http://localhost:4200/") + JSONResponse(response_data)
 
 
 # @app.get("/logout")
