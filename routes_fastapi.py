@@ -70,7 +70,7 @@ async def callback(request: StarletteRequest):
         "name": id_info.get("name")
     }
 
-    redirect_url = "http://localhost:4200/?" + "&".join(f"{key}={value}" for key, value in query_params.items())
+    redirect_url = "https://fastapi-ytfv.onrender.com/?" + "&".join(f"{key}={value}" for key, value in query_params.items())
 
 
     if(collection_account.find_one({"sub": id_info.get("sub")}) is None):
