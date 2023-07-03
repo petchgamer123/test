@@ -30,8 +30,6 @@ PyPDF2
 python-jose
 passlib
 bcrypt
-google-auth 
-google-auth-oauthlib
 itsdangerous
 python-dotenv
 wraps
