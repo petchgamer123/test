@@ -65,16 +65,18 @@ async def callback(request: StarletteRequest):
     request.session["google_id"] = id_info.get("sub")
     request.session["name"] = id_info.get("name")
 
-    response_data = {
+    query_params = {
         "google_id": id_info.get("sub"),
-        "name": id_info.get("name"),
-        "email": id_info.get("email")
+        "name": id_info.get("name")
     }
-    
+
+    redirect_url = "http://localhost:4200/?" + "&".join(f"{key}={value}" for key, value in query_params.items())
+
+
     if(collection_account.find_one({"sub": id_info.get("sub")}) is None):
         user = collection_account.insert_one(id_info)
 
-    return RedirectResponse("http://localhost:4200/") + JSONResponse(response_data)
+    return RedirectResponse(redirect_url)
 
 
 # @app.get("/logout")
