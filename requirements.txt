@@ -13,4 +13,4 @@ itsdangerous
 python-dotenv
 wraps
 pyjwt==1.7.1
-pydantic==2.0
+
