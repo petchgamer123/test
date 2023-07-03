@@ -30,7 +30,6 @@ PyPDF2
 python-jose
 passlib
 bcrypt
-itsdangerous
 python-dotenv
 wraps
 pyjwt==1.7.1
