@@ -10,10 +10,18 @@ from starlette.middleware.sessions import SessionMiddleware
 from starlette.middleware import Middleware
 from starlette.requests import Request as StarletteRequest
 
+from dotenv import load_dotenv
+import os
+
+load_dotenv()
+SECRET_KEY = os.getenv("SECRET_KEY")
+SOCIAL_AUTH_FACEBOOK_KEY = os.getenv("SOCIAL_AUTH_FACEBOOK_KEY")
+SOCIAL_AUTH_FACEBOOK_SECRET = os.getenv("SOCIAL_AUTH_FACEBOOK_SECRET")
+
 router = APIRouter()
 templates = Jinja2Templates(directory="templates")
 app = FastAPI()
-app.add_middleware(SessionMiddleware, secret_key="dVu9jfC1PPVGRkq-X5nKaP_vDHC63CxQ2K4W0QVpFJo", session_cookie="user_session")
+app.add_middleware(SessionMiddleware, secret_key=SECRET_KEY, session_cookie="user_session")
 
 
 def create_access_token(data: dict, expires_delta: timedelta = None):
@@ -51,7 +59,7 @@ def login_facebook():
     # Redirect to Facebook login
     facebook_redirect_url = "https://www.facebook.com/v12.0/dialog/oauth"
     params = {
-        "client_id": "1300273574255667",
+        "client_id": SOCIAL_AUTH_FACEBOOK_KEY,
         "redirect_uri": "https://fastapi-ytfv.onrender.com/callback",
         "state": "YOUR_STATE",
         "scope": "email",  # กำหนด scope ตามความต้องการ
@@ -64,8 +72,8 @@ async def facebook_callback(request: Request, code: str, state: str):
     # ใช้ code ในการสร้าง access_token และรับข้อมูลผู้ใช้จาก Facebook
     facebook_token_url = "https://graph.facebook.com/v12.0/oauth/access_token"
     params = {
-        "client_id": "1300273574255667",
-        "client_secret": "e7c85850d410d960ae41c6554a4c8cdd",
+        "client_id": SOCIAL_AUTH_FACEBOOK_KEY,
+        "client_secret": SOCIAL_AUTH_FACEBOOK_SECRET,
         "redirect_uri": "https://fastapi-ytfv.onrender.com/callback",
         "code": code,
     }
