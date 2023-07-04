@@ -1,8 +1,8 @@
 httpx
 Jinja2
-fastapi-sessions==0.6.0
+fastapi-sessions
 uvicorn
-fastapi==0.65.2
+fastapi
 firebase_admin
 pymongo
 python-multipart
@@ -15,4 +15,3 @@ google-auth-oauthlib
 itsdangerous
 python-dotenv
 wraps
-pyjwt==2.1.0
