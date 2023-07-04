@@ -74,6 +74,8 @@ async def facebook_callback(request: Request, code: str, state: str):
         response.raise_for_status()
         token_data = response.json()
 
+    print(token_data)
+    
     access_token = token_data["access_token"]
     user_data = await fetch_facebook_user_info(access_token)
     request.session["user"] = user_data
@@ -83,18 +85,4 @@ async def facebook_callback(request: Request, code: str, state: str):
 
     return {"message": "Facebook callback"}
 
-@app.get("/success", response_class=HTMLResponse)
-@login_required
-async def facebook_success(request: Request):
-    user_data = request.session["user"]
-    return templates.TemplateResponse("fb-github-success.html", {"request": request, "user": user_data})
-
-@app.get("/error")
-def facebook_error():
-    return {"message": "Error logging in via Facebook"}
-
-@app.get("/signout")
-def facebook_signout(request: Request):
-    request.session.clear()
-    return {"message": "Sign out success"}
 
