@@ -1,6 +1,6 @@
 httpx
 Jinja2
-fastapi-sessions
+fastapi-sessions==0.3.2
 uvicorn
 fastapi
 firebase_admin
