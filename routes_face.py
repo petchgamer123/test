@@ -54,6 +54,10 @@ def login_required(func):
 async def root():
     return {"message": "Hello, World!"}
 
+@app.get('/Privacy')
+async def Privacy():
+    return {"message": "PrivacyPrivacyPrivacyPrivacyPrivacyPrivacyPrivacyPrivacyPrivacy"}
+
 @app.get("/login")
 def login_facebook():
     # Redirect to Facebook login
