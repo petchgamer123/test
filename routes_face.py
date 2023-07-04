@@ -58,6 +58,10 @@ async def root():
 async def Privacy():
     return {"message": "PrivacyPrivacyPrivacyPrivacyPrivacyPrivacyPrivacyPrivacyPrivacy"}
 
+@app.get('/rules')
+async def rules():
+    return {"message": "*************************   rules   *************************"}
+
 @app.get("/login")
 def login_facebook():
     # Redirect to Facebook login
