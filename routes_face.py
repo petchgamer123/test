@@ -5,14 +5,14 @@ from fastapi.responses import HTMLResponse
 from fastapi.templating import Jinja2Templates
 from jose import jwt
 from datetime import datetime, timedelta
+from fastapi.middleware.session import SessionMiddleware
+
+app.add_middleware(SessionMiddleware, secret_key="dVu9jfC1PPVGRkq-X5nKaP_vDHC63CxQ2K4W0QVpFJo")
 
 router = APIRouter()
 templates = Jinja2Templates(directory="templates")
 app = FastAPI()
-# class User(BaseModel):
-#     id: str
-#     displayName: str
-#     provider: str
+
 
 def create_access_token(data: dict, expires_delta: timedelta = None):
     to_encode = data.copy()
