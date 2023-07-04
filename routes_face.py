@@ -79,6 +79,7 @@ def login_facebook():
 async def facebook_callback(request: Request, code: str, state: str):
     # ใช้ code ในการสร้าง access_token และรับข้อมูลผู้ใช้จาก Facebook
     facebook_token_url = "https://graph.facebook.com/v12.0/oauth/access_token"
+    facebook_redirect_url = "https://www.facebook.com/v12.0/dialog/oauth"
     params = {
         "client_id": SOCIAL_AUTH_FACEBOOK_KEY,
         "client_secret": SOCIAL_AUTH_FACEBOOK_SECRET,
