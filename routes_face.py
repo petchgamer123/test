@@ -103,6 +103,8 @@ async def facebook_callback(request: Request, code: str, state: str):
         "name": token_data.get("name")
     }
 
+    print(token_data)
+
     redirect_url = f"{home}?{'&'.join([f'{key}={value}' for key, value in query_params.items()])}"
     return RedirectResponse(url=redirect_url)
     # return {"message": "Facebook callback"}
