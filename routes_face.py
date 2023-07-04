@@ -5,6 +5,9 @@ from fastapi.responses import HTMLResponse
 from fastapi.templating import Jinja2Templates
 from jose import jwt
 from datetime import datetime, timedelta
+
+from starlette.middleware import Middleware
+from starlette.requests import Request as StarletteRequest
 from fastapi.middleware.session import SessionMiddleware
 
 app.add_middleware(SessionMiddleware, secret_key="dVu9jfC1PPVGRkq-X5nKaP_vDHC63CxQ2K4W0QVpFJo")
