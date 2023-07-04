@@ -6,12 +6,14 @@ from fastapi.templating import Jinja2Templates
 from jose import jwt
 from datetime import datetime, timedelta
 
-from fastapi_sessions import SessionMiddleware
-app.add_middleware(SessionMiddleware, secret_key="dVu9jfC1PPVGRkq-X5nKaP_vDHC63CxQ2K4W0QVpFJo")
+from starlette.middleware.sessions import SessionMiddleware
+from starlette.middleware import Middleware
+from starlette.requests import Request as StarletteRequest
 
 router = APIRouter()
 templates = Jinja2Templates(directory="templates")
 app = FastAPI()
+app.add_middleware(SessionMiddleware, secret_key="dVu9jfC1PPVGRkq-X5nKaP_vDHC63CxQ2K4W0QVpFJo", session_cookie="user_session")
 
 
 def create_access_token(data: dict, expires_delta: timedelta = None):
