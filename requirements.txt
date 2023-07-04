@@ -1,4 +1,6 @@
 httpx
+Jinja2
+
 uvicorn
 fastapi
 firebase_admin
