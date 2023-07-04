@@ -54,13 +54,13 @@ def login_required(func):
 async def root():
     return {"message": "Hello, World!"}
 
-@app.get('/Privacy')
-async def Privacy():
-    return {"message": "PrivacyPrivacyPrivacyPrivacyPrivacyPrivacyPrivacyPrivacyPrivacy"}
+# @app.get('/Privacy')
+# async def Privacy():
+#     return {"message": "PrivacyPrivacyPrivacyPrivacyPrivacyPrivacyPrivacyPrivacyPrivacy"}
 
-@app.get('/rules')
-async def rules():
-    return {"message": "*************************   rules   *************************"}
+# @app.get('/rules')
+# async def rules():
+#     return {"message": "*************************   rules   *************************"}
 
 @app.get("/login")
 def login_facebook():
@@ -89,8 +89,6 @@ async def facebook_callback(request: Request, code: str, state: str):
         response = await client.get(facebook_token_url, params=params)
         response.raise_for_status()
         token_data = response.json()
-
-    print(token_data)
     
     access_token = token_data["access_token"]
     user_data = await fetch_facebook_user_info(access_token)
@@ -99,6 +97,6 @@ async def facebook_callback(request: Request, code: str, state: str):
     # สร้าง access token และเก็บไว้ใน session
     user_data["access_token"] = create_access_token(user_data)
 
-    return {"message": "Facebook callback"}
+    return {token_data}
 
 
