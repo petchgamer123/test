@@ -17,4 +17,3 @@ itsdangerous
 python-dotenv
 wraps
 pyjwt==1.7.1
-
