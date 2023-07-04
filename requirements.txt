@@ -1,6 +1,6 @@
 httpx
 Jinja2
-fastapi-sessions
+fastapi-sessions==0.7.1
 
 uvicorn
 fastapi
