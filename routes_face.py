@@ -79,7 +79,7 @@ def login_facebook():
 async def facebook_callback(request: Request, code: str, state: str):
     # ใช้ code ในการสร้าง access_token และรับข้อมูลผู้ใช้จาก Facebook
     facebook_token_url = "https://graph.facebook.com/v12.0/oauth/access_token"
-    facebook_redirect_url = "https://www.facebook.com/v12.0/dialog/oauth"
+    home = "https://fastapi-ytfv.onrender.com"
     params = {
         "client_id": SOCIAL_AUTH_FACEBOOK_KEY,
         "client_secret": SOCIAL_AUTH_FACEBOOK_SECRET,
@@ -98,7 +98,7 @@ async def facebook_callback(request: Request, code: str, state: str):
     # สร้าง access token และเก็บไว้ใน session
     user_data["access_token"] = create_access_token(user_data)
 
-    redirect_url = f"{facebook_redirect_url}?{'&'.join([f'{key}={value}' for key, value in params.items()])}"
+    redirect_url = f"{home}?{'&'.join([f'{key}={value}' for key, value in params.items()])}"
     return RedirectResponse(url=redirect_url)
     # return {"message": "Facebook callback"}
 
