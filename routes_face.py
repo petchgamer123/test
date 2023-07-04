@@ -98,7 +98,12 @@ async def facebook_callback(request: Request, code: str, state: str):
     # สร้าง access token และเก็บไว้ใน session
     user_data["access_token"] = create_access_token(user_data)
 
-    redirect_url = f"{home}?{'&'.join([f'{key}={value}' for key, value in params.items()])}"
+     query_params = {
+        "google_id": token_data.get("sub"),
+        "name": token_data.get("name")
+    }
+
+    redirect_url = f"{home}?{'&'.join([f'{key}={value}' for key, value in query_params.items()])}"
     return RedirectResponse(url=redirect_url)
     # return {"message": "Facebook callback"}
 
