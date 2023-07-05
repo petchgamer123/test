@@ -99,7 +99,7 @@ async def facebook_callback(request: Request, code: str, state: str):
     user_data["access_token"] = create_access_token(user_data)
 
     query_params = {
-        "google_id": token_data.get("sub"),
+        "facebook_id": token_data.get("sub"),
         "name": token_data.get("name")
     }
 
