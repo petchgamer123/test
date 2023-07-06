@@ -11,7 +11,7 @@ import requests
 import os
 from pathlib import Path
 
-from config.db import collection_account
+from db import collection_account
 
 app = FastAPI()
 RouterGoogle = APIRouter()
