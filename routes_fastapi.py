@@ -11,14 +11,10 @@ import requests
 import os
 from pathlib import Path
 
-import json
-from starlette.responses import JSONResponse
-
-from db import collection_account
+from config.db import collection_account
 
 app = FastAPI()
-Router = APIRouter()
-
+RouterGoogle = APIRouter()
 app.add_middleware(SessionMiddleware, secret_key="dVu9jfC1PPVGRkq-X5nKaP_vDHC63CxQ2K4W0QVpFJo", session_cookie="user_session")
 
 client_secrets_file = "client_secret.json"
@@ -77,19 +73,4 @@ async def callback(request: StarletteRequest):
         user = collection_account.insert_one(id_info)
 
     return RedirectResponse(redirect_url)
-
-
-# @app.get("/logout")
-# async def logout(request: StarletteRequest):
-#     request.session.clear()
-#     return RedirectResponse("/")
-
-# @app.get("/protected_area")
-# async def protected_area(request: StarletteRequest):
-#     return f"Hello {request.session['name']}! <br/> <a href='/logout'><button>Logout</button></a>"
-
-
-# @app.get("/")
-# async def index():
-#     return "Hello World <a href='/login'><button>Login</button></a>"
 
